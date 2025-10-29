@@ -3,346 +3,465 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>实时监控 · 数据分析 · 智能决策</title>
+    <title>全球气候环境监测仪表盘</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <!-- 头部 test-->
+        <!-- 头部 -->
         <header class="header">
-            <div class="author">作者：dongyixu</div>
-            <h1 class="title">实时监控 · 数据分析 · 智能决策</h1>
+            <div class="subtitle">Global Climate & Environment Monitoring Dashboard</div>
+            <h1 class="title">🌍 全球气候环境监测仪表盘</h1>
+            <div class="update-time">最后更新时间: <span id="updateTime">2025-10-29 14:32:15</span> UTC</div>
         </header>
 
         <!-- KPI 卡片 -->
         <div class="kpi-grid">
-            <div class="kpi-card">
-                <div class="kpi-label">总收入</div>
-                <div class="kpi-value">$2.8T</div>
-                <div class="kpi-change positive">↑ 23.5%</div>
+            <div class="kpi-card temp">
+                <div class="kpi-icon">🌡️</div>
+                <div class="kpi-content">
+                    <div class="kpi-label">全球平均气温</div>
+                    <div class="kpi-value">15.8°C</div>
+                    <div class="kpi-change warning">↑ 1.2°C 较工业化前</div>
+                </div>
             </div>
-            <div class="kpi-card">
-                <div class="kpi-label">活跃用户</div>
-                <div class="kpi-value">8.6B</div>
-                <div class="kpi-change positive">↑ 12.3%</div>
+            <div class="kpi-card co2">
+                <div class="kpi-icon">💨</div>
+                <div class="kpi-content">
+                    <div class="kpi-label">CO₂浓度</div>
+                    <div class="kpi-value">421.3 ppm</div>
+                    <div class="kpi-change danger">↑ 2.8 ppm 同比去年</div>
+                </div>
             </div>
-            <div class="kpi-card">
-                <div class="kpi-label">项目总数</div>
-                <div class="kpi-value">15,847</div>
-                <div class="kpi-change positive">↑ 8.7%</div>
+            <div class="kpi-card aqi">
+                <div class="kpi-icon">🌫️</div>
+                <div class="kpi-content">
+                    <div class="kpi-label">全球平均AQI</div>
+                    <div class="kpi-value">82</div>
+                    <div class="kpi-change moderate">↓ 5 良好趋势</div>
+                </div>
             </div>
-            <div class="kpi-card">
-                <div class="kpi-label">市场份额</div>
-                <div class="kpi-value">34.2%</div>
-                <div class="kpi-change negative">↓ 2.1%</div>
+            <div class="kpi-card renewable">
+                <div class="kpi-icon">♻️</div>
+                <div class="kpi-content">
+                    <div class="kpi-label">可再生能源占比</div>
+                    <div class="kpi-value">29.8%</div>
+                    <div class="kpi-change positive">↑ 3.2% 同比增长</div>
+                </div>
             </div>
         </div>
 
         <!-- 图表区域 -->
-        <div class="chart-section">
-            <h2 class="section-title">📈 季度收入趋势图</h2>
-            <div id="quarterlyRevenueChart" class="chart-container"></div>
+        <div class="chart-row">
+            <div class="chart-section large">
+                <h2 class="section-title">📈 全球气温变化趋势（1880-2025）</h2>
+                <div id="temperatureTrendChart" class="chart-container"></div>
+            </div>
+            <div class="chart-section small">
+                <h2 class="section-title">🥧 温室气体排放构成</h2>
+                <div id="greenhouseGasChart" class="chart-container"></div>
+            </div>
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-section medium">
+                <h2 class="section-title">🏙️ 主要城市空气质量指数</h2>
+                <div id="cityAQIChart" class="chart-container"></div>
+            </div>
+            <div class="chart-section medium">
+                <h2 class="section-title">⚡ 可再生能源发电量趋势</h2>
+                <div id="renewableEnergyChart" class="chart-container"></div>
+            </div>
         </div>
 
         <div class="chart-section">
-            <h2 class="section-title">🥧 市场份额分布</h2>
-            <div id="marketShareChart" class="chart-container"></div>
-        </div>
-
-        <div class="chart-section">
-            <h2 class="section-title">📊 产品销售对比图</h2>
-            <div id="productSalesChart" class="chart-container"></div>
-        </div>
-
-        <div class="chart-section">
-            <h2 class="section-title">🌐 区域收入分布</h2>
-            <div id="regionalRevenueChart" class="chart-container"></div>
-        </div>
-
-        <div class="chart-section">
-            <h2 class="section-title">📉 年度财务表现（折线图）</h2>
-            <div id="annualPerformanceChart" class="chart-container"></div>
+            <h2 class="section-title">🌏 全球主要国家碳排放量对比</h2>
+            <div id="carbonEmissionsChart" class="chart-container"></div>
         </div>
 
         <!-- 表格区域 -->
         <div class="table-section">
-            <h2 class="section-title">🏆 全球科技公司排行榜</h2>
+            <h2 class="section-title">🏙️ 重点城市环境监测数据</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>城市</th>
+                        <th>国家</th>
+                        <th>AQI指数</th>
+                        <th>PM2.5 (μg/m³)</th>
+                        <th>温度 (°C)</th>
+                        <th>湿度 (%)</th>
+                        <th>空气质量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>斯德哥尔摩</td>
+                        <td>瑞典</td>
+                        <td>28</td>
+                        <td>12</td>
+                        <td>8.5</td>
+                        <td>72%</td>
+                        <td><span class="aqi-badge aqi-good">优</span></td>
+                    </tr>
+                    <tr>
+                        <td>温哥华</td>
+                        <td>加拿大</td>
+                        <td>35</td>
+                        <td>15</td>
+                        <td>12.3</td>
+                        <td>65%</td>
+                        <td><span class="aqi-badge aqi-good">优</span></td>
+                    </tr>
+                    <tr>
+                        <td>东京</td>
+                        <td>日本</td>
+                        <td>58</td>
+                        <td>28</td>
+                        <td>18.7</td>
+                        <td>58%</td>
+                        <td><span class="aqi-badge aqi-moderate">良</span></td>
+                    </tr>
+                    <tr>
+                        <td>巴黎</td>
+                        <td>法国</td>
+                        <td>62</td>
+                        <td>31</td>
+                        <td>15.2</td>
+                        <td>68%</td>
+                        <td><span class="aqi-badge aqi-moderate">良</span></td>
+                    </tr>
+                    <tr>
+                        <td>北京</td>
+                        <td>中国</td>
+                        <td>95</td>
+                        <td>48</td>
+                        <td>22.1</td>
+                        <td>45%</td>
+                        <td><span class="aqi-badge aqi-sensitive">轻度污染</span></td>
+                    </tr>
+                    <tr>
+                        <td>新德里</td>
+                        <td>印度</td>
+                        <td>168</td>
+                        <td>125</td>
+                        <td>28.5</td>
+                        <td>52%</td>
+                        <td><span class="aqi-badge aqi-unhealthy">中度污染</span></td>
+                    </tr>
+                    <tr>
+                        <td>洛杉矶</td>
+                        <td>美国</td>
+                        <td>78</td>
+                        <td>38</td>
+                        <td>20.8</td>
+                        <td>55%</td>
+                        <td><span class="aqi-badge aqi-moderate">良</span></td>
+                    </tr>
+                    <tr>
+                        <td>圣保罗</td>
+                        <td>巴西</td>
+                        <td>85</td>
+                        <td>42</td>
+                        <td>24.3</td>
+                        <td>78%</td>
+                        <td><span class="aqi-badge aqi-sensitive">轻度污染</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-section">
+            <h2 class="section-title">🌍 国家碳排放与环境指数排名</h2>
             <table class="data-table">
                 <thead>
                     <tr>
                         <th>排名</th>
-                        <th>公司名称</th>
-                        <th>市值</th>
-                        <th>年增长</th>
+                        <th>国家</th>
+                        <th>年碳排放量 (Mt)</th>
+                        <th>人均排放 (t)</th>
+                        <th>环境绩效指数</th>
+                        <th>趋势</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>#1</td>
-                        <td>QuantumTech Corp</td>
-                        <td>$3.2T</td>
-                        <td class="positive">+28.5%</td>
+                        <td>🇨🇳 中国</td>
+                        <td>10,175</td>
+                        <td>7.2</td>
+                        <td>37.3</td>
+                        <td class="trend-down">↓ 减排中</td>
                     </tr>
                     <tr>
                         <td>#2</td>
-                        <td>NeuralNet Systems</td>
-                        <td>$2.8T</td>
-                        <td class="positive">+31.2%</td>
+                        <td>🇺🇸 美国</td>
+                        <td>5,007</td>
+                        <td>15.2</td>
+                        <td>51.1</td>
+                        <td class="trend-down">↓ 减排中</td>
                     </tr>
                     <tr>
                         <td>#3</td>
-                        <td>CyberDynamics Inc</td>
-                        <td>$2.1T</td>
-                        <td class="positive">+18.7%</td>
+                        <td>🇮🇳 印度</td>
+                        <td>2,709</td>
+                        <td>1.9</td>
+                        <td>27.6</td>
+                        <td class="trend-up">↑ 增长中</td>
                     </tr>
                     <tr>
                         <td>#4</td>
-                        <td>FusionAI Labs</td>
-                        <td>$1.9T</td>
-                        <td class="positive">+42.3%</td>
+                        <td>🇷🇺 俄罗斯</td>
+                        <td>1,754</td>
+                        <td>12.1</td>
+                        <td>37.5</td>
+                        <td class="trend-stable">→ 稳定</td>
                     </tr>
                     <tr>
                         <td>#5</td>
-                        <td>DataVerse Global</td>
-                        <td>$1.6T</td>
-                        <td class="positive">+15.8%</td>
+                        <td>🇯🇵 日本</td>
+                        <td>1,107</td>
+                        <td>8.7</td>
+                        <td>63.2</td>
+                        <td class="trend-down">↓ 减排中</td>
                     </tr>
                     <tr>
                         <td>#6</td>
-                        <td>CloudMatrix Ltd</td>
-                        <td>$1.4T</td>
-                        <td class="negative">-3.2%</td>
+                        <td>🇩🇪 德国</td>
+                        <td>675</td>
+                        <td>8.1</td>
+                        <td>77.2</td>
+                        <td class="trend-down">↓ 减排中</td>
                     </tr>
                     <tr>
                         <td>#7</td>
-                        <td>BioTech Innovations</td>
-                        <td>$1.2T</td>
-                        <td class="positive">+25.6%</td>
+                        <td>🇰🇷 韩国</td>
+                        <td>616</td>
+                        <td>11.9</td>
+                        <td>66.5</td>
+                        <td class="trend-stable">→ 稳定</td>
+                    </tr>
+                    <tr>
+                        <td>#8</td>
+                        <td>🇨🇦 加拿大</td>
+                        <td>573</td>
+                        <td>15.4</td>
+                        <td>71.0</td>
+                        <td class="trend-down">↓ 减排中</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="table-section">
-            <h2 class="section-title">📊 季度产品销售数据</h2>
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>产品</th>
-                        <th>Q1销量</th>
-                        <th>Q2销量</th>
-                        <th>Q3销量</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>AI芯片 X9000</td>
-                        <td>1.2M</td>
-                        <td>1.8M</td>
-                        <td>2.4M</td>
-                    </tr>
-                    <tr>
-                        <td>量子计算机 Q-Pro</td>
-                        <td>850K</td>
-                        <td>920K</td>
-                        <td>1.1M</td>
-                    </tr>
-                    <tr>
-                        <td>神经接口设备 NeuroLink</td>
-                        <td>3.5M</td>
-                        <td>4.2M</td>
-                        <td>5.8M</td>
-                    </tr>
-                    <tr>
-                        <td>全息投影仪 HoloPro</td>
-                        <td>680K</td>
-                        <td>750K</td>
-                        <td>890K</td>
-                    </tr>
-                    <tr>
-                        <td>智能机器人 RoboAssist</td>
-                        <td>2.1M</td>
-                        <td>2.6M</td>
-                        <td>3.3M</td>
-                    </tr>
-                    <tr>
-                        <td>云存储服务 CloudMax</td>
-                        <td>15.2M</td>
-                        <td>18.7M</td>
-                        <td>22.4M</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="table-section">
-            <h2 class="section-title">🎯 重点项目进度跟踪</h2>
+            <h2 class="section-title">🌱 全球环保项目进度追踪</h2>
             <table class="data-table">
                 <thead>
                     <tr>
                         <th>项目名称</th>
-                        <th>负责人</th>
+                        <th>负责机构</th>
                         <th>预算</th>
                         <th>进度</th>
+                        <th>减排目标 (Mt/年)</th>
                         <th>状态</th>
-                        <th>截止日期</th>
+                        <th>完成日期</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>量子加密系统</td>
-                        <td>张伟博士</td>
-                        <td>$245M</td>
-                        <td>85%</td>
+                        <td>亚马逊雨林保护计划</td>
+                        <td>联合国环境署</td>
+                        <td>$8.5B</td>
+                        <td>78%</td>
+                        <td>450</td>
                         <td><span class="status-badge status-inprogress">进行中</span></td>
-                        <td>2025-12-15</td>
+                        <td>2026-12-31</td>
                     </tr>
                     <tr>
-                        <td>AI医疗诊断平台</td>
-                        <td>李娜教授</td>
-                        <td>$180M</td>
-                        <td>92%</td>
+                        <td>撒哈拉绿色长城</td>
+                        <td>非洲联盟</td>
+                        <td>$4.3B</td>
+                        <td>45%</td>
+                        <td>250</td>
+                        <td><span class="status-badge status-attention">需关注</span></td>
+                        <td>2030-06-30</td>
+                    </tr>
+                    <tr>
+                        <td>欧盟碳中和2050</td>
+                        <td>欧盟委员会</td>
+                        <td>$1.2T</td>
+                        <td>62%</td>
+                        <td>2,800</td>
+                        <td><span class="status-badge status-inprogress">进行中</span></td>
+                        <td>2050-12-31</td>
+                    </tr>
+                    <tr>
+                        <td>中国碳达峰行动</td>
+                        <td>中国政府</td>
+                        <td>¥15T</td>
+                        <td>58%</td>
+                        <td>3,200</td>
+                        <td><span class="status-badge status-inprogress">进行中</span></td>
+                        <td>2030-12-31</td>
+                    </tr>
+                    <tr>
+                        <td>全球海洋塑料清理</td>
+                        <td>海洋清理基金会</td>
+                        <td>$2.1B</td>
+                        <td>35%</td>
+                        <td>-</td>
+                        <td><span class="status-badge status-delayed">进展缓慢</span></td>
+                        <td>2028-12-31</td>
+                    </tr>
+                    <tr>
+                        <td>印度太阳能计划</td>
+                        <td>印度政府</td>
+                        <td>$100B</td>
+                        <td>82%</td>
+                        <td>650</td>
+                        <td><span class="status-badge status-nearcompletion">即将完成</span></td>
+                        <td>2026-03-31</td>
+                    </tr>
+                    <tr>
+                        <td>北极生态保护区</td>
+                        <td>北极理事会</td>
+                        <td>$3.5B</td>
+                        <td>91%</td>
+                        <td>180</td>
                         <td><span class="status-badge status-nearcompletion">即将完成</span></td>
                         <td>2025-11-30</td>
                     </tr>
-                    <tr>
-                        <td>全球卫星网络</td>
-                        <td>王军工程师</td>
-                        <td>$520M</td>
-                        <td>67%</td>
-                        <td><span class="status-badge status-attention">需关注</span></td>
-                        <td>2026-03-20</td>
-                    </tr>
-                    <tr>
-                        <td>虚拟现实生态系统</td>
-                        <td>陈晨总监</td>
-                        <td>$340M</td>
-                        <td>78%</td>
-                        <td><span class="status-badge status-inprogress">进行中</span></td>
-                        <td>2026-01-10</td>
-                    </tr>
-                    <tr>
-                        <td>自动驾驶算法 V5</td>
-                        <td>刘强架构师</td>
-                        <td>$290M</td>
-                        <td>45%</td>
-                        <td><span class="status-badge status-delayed">延期</span></td>
-                        <td>2026-02-28</td>
-                    </tr>
-                    <tr>
-                        <td>区块链金融平台</td>
-                        <td>赵敏经理</td>
-                        <td>$165M</td>
-                        <td>100%</td>
-                        <td><span class="status-badge status-completed">已完成</span></td>
-                        <td>2025-10-01</td>
-                    </tr>
-                    <tr>
-                        <td>纳米材料研发</td>
-                        <td>孙丽研究员</td>
-                        <td>$420M</td>
-                        <td>32%</td>
-                        <td><span class="status-badge status-risk">风险</span></td>
-                        <td>2026-06-15</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="table-section">
-            <h2 class="section-title">🌐 服务器性能监控</h2>
+            <h2 class="section-title">🏭 重点污染源实时监控</h2>
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>服务器</th>
+                        <th>监测点</th>
+                        <th>类型</th>
                         <th>位置</th>
-                        <th>CPU使用率</th>
-                        <th>内存</th>
-                        <th>状态</th>
+                        <th>排放量 (t/天)</th>
+                        <th>合规状态</th>
+                        <th>警报级别</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>US-EAST-01</td>
-                        <td>纽约</td>
-                        <td>68%</td>
-                        <td>124GB/256GB</td>
-                        <td><span class="status-badge status-normal">正常</span></td>
+                        <td>华能电厂-A区</td>
+                        <td>燃煤发电</td>
+                        <td>河北省</td>
+                        <td>284</td>
+                        <td><span class="status-badge status-compliant">达标</span></td>
+                        <td><span class="alert-level level-normal">正常</span></td>
                     </tr>
                     <tr>
-                        <td>EU-WEST-02</td>
-                        <td>伦敦</td>
-                        <td>45%</td>
-                        <td>98GB/256GB</td>
-                        <td><span class="status-badge status-normal">正常</span></td>
+                        <td>钢铁厂-B12</td>
+                        <td>钢铁冶炼</td>
+                        <td>辽宁省</td>
+                        <td>412</td>
+                        <td><span class="status-badge status-warning">接近上限</span></td>
+                        <td><span class="alert-level level-warning">预警</span></td>
                     </tr>
                     <tr>
-                        <td>ASIA-EAST-03</td>
-                        <td>东京</td>
-                        <td>82%</td>
-                        <td>210GB/256GB</td>
-                        <td><span class="status-badge status-highload">高负载</span></td>
+                        <td>化工园区-C</td>
+                        <td>化学工业</td>
+                        <td>江苏省</td>
+                        <td>156</td>
+                        <td><span class="status-badge status-compliant">达标</span></td>
+                        <td><span class="alert-level level-normal">正常</span></td>
                     </tr>
                     <tr>
-                        <td>AU-SOUTH-04</td>
-                        <td>悉尼</td>
-                        <td>51%</td>
-                        <td>115GB/256GB</td>
-                        <td><span class="status-badge status-normal">正常</span></td>
+                        <td>水泥厂-D5</td>
+                        <td>建材生产</td>
+                        <td>山东省</td>
+                        <td>328</td>
+                        <td><span class="status-badge status-violation">超标</span></td>
+                        <td><span class="alert-level level-alert">警报</span></td>
                     </tr>
                     <tr>
-                        <td>CN-NORTH-05</td>
-                        <td>北京</td>
-                        <td>91%</td>
-                        <td>238GB/256GB</td>
-                        <td><span class="status-badge status-warning">警告</span></td>
+                        <td>炼油厂-E1</td>
+                        <td>石油化工</td>
+                        <td>广东省</td>
+                        <td>275</td>
+                        <td><span class="status-badge status-compliant">达标</span></td>
+                        <td><span class="alert-level level-normal">正常</span></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="table-section">
-            <h2 class="section-title">📱 移动应用数据</h2>
+            <h2 class="section-title">🌳 全球重点生态保护区状态</h2>
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>应用名称</th>
-                        <th>下载量</th>
-                        <th>活跃用户</th>
-                        <th>评分</th>
+                        <th>保护区名称</th>
+                        <th>位置</th>
+                        <th>面积 (km²)</th>
+                        <th>森林覆盖率</th>
+                        <th>物种数量</th>
+                        <th>健康指数</th>
+                        <th>威胁等级</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>TechHub Pro</td>
-                        <td>245M</td>
-                        <td>156M</td>
-                        <td>⭐ 4.8</td>
+                        <td>亚马逊雨林</td>
+                        <td>南美洲</td>
+                        <td>5,500,000</td>
+                        <td>84.2%</td>
+                        <td>~40,000</td>
+                        <td>72/100</td>
+                        <td><span class="threat-badge threat-high">高风险</span></td>
                     </tr>
                     <tr>
-                        <td>CloudSync Plus</td>
-                        <td>189M</td>
-                        <td>124M</td>
-                        <td>⭐ 4.6</td>
+                        <td>刚果盆地</td>
+                        <td>非洲</td>
+                        <td>3,700,000</td>
+                        <td>91.5%</td>
+                        <td>~10,000</td>
+                        <td>81/100</td>
+                        <td><span class="threat-badge threat-medium">中等风险</span></td>
                     </tr>
                     <tr>
-                        <td>AI Assistant</td>
-                        <td>520M</td>
-                        <td>385M</td>
-                        <td>⭐ 4.9</td>
+                        <td>大堡礁</td>
+                        <td>澳大利亚</td>
+                        <td>344,400</td>
+                        <td>-</td>
+                        <td>~1,500</td>
+                        <td>58/100</td>
+                        <td><span class="threat-badge threat-critical">极高风险</span></td>
                     </tr>
                     <tr>
-                        <td>SecureVault</td>
-                        <td>98M</td>
-                        <td>67M</td>
-                        <td>⭐ 4.7</td>
+                        <td>黄石国家公园</td>
+                        <td>美国</td>
+                        <td>8,983</td>
+                        <td>78.6%</td>
+                        <td>~300</td>
+                        <td>88/100</td>
+                        <td><span class="threat-badge threat-low">低风险</span></td>
                     </tr>
                     <tr>
-                        <td>MetaConnect</td>
-                        <td>412M</td>
-                        <td>298M</td>
-                        <td>⭐ 4.5</td>
+                        <td>塞伦盖蒂</td>
+                        <td>坦桑尼亚</td>
+                        <td>30,000</td>
+                        <td>65.3%</td>
+                        <td>~500</td>
+                        <td>79/100</td>
+                        <td><span class="threat-badge threat-medium">中等风险</span></td>
+                    </tr>
+                    <tr>
+                        <td>三江源保护区</td>
+                        <td>中国</td>
+                        <td>363,000</td>
+                        <td>71.8%</td>
+                        <td>~2,000</td>
+                        <td>76/100</td>
+                        <td><span class="threat-badge threat-medium">中等风险</span></td>
                     </tr>
                 </tbody>
             </table>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实时监控 · 数据分析 · 智能决策</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 test-->
+        <header class="header">
+            <div class="author">作者：莫浩然</div>
+            <h1 class="title">实时监控 · 数据分析 · 智能决策</h1>
+        </header>
+
+        <!-- KPI 卡片 -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">总收入</div>
+                <div class="kpi-value">$2.8T</div>
+                <div class="kpi-change positive">↑ 23.5%</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">活跃用户</div>
+                <div class="kpi-value">8.6B</div>
+                <div class="kpi-change positive">↑ 12.3%</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">项目总数</div>
+                <div class="kpi-value">15,847</div>
+                <div class="kpi-change positive">↑ 8.7%</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">市场份额</div>
+                <div class="kpi-value">34.2%</div>
+                <div class="kpi-change negative">↓ 2.1%</div>
+            </div>
+        </div>
+
+        <!-- 图表区域 -->
+        <div class="chart-section">
+            <h2 class="section-title">📈 季度收入趋势图</h2>
+            <div id="quarterlyRevenueChart" class="chart-container"></div>
+        </div>
+
+        <div class="chart-section">
+            <h2 class="section-title">🥧 市场份额分布</h2>
+            <div id="marketShareChart" class="chart-container"></div>
+        </div>
+
+        <div class="chart-section">
+            <h2 class="section-title">📊 产品销售对比图</h2>
+            <div id="productSalesChart" class="chart-container"></div>
+        </div>
+
+        <div class="chart-section">
+            <h2 class="section-title">🌐 区域收入分布</h2>
+            <div id="regionalRevenueChart" class="chart-container"></div>
+        </div>
+
+        <div class="chart-section">
+            <h2 class="section-title">📉 年度财务表现（折线图）</h2>
+            <div id="annualPerformanceChart" class="chart-container"></div>
+        </div>
+
+        <!-- 表格区域 -->
+        <div class="table-section">
+            <h2 class="section-title">🏆 全球科技公司排行榜</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>公司名称</th>
+                        <th>市值</th>
+                        <th>年增长</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#1</td>
+                        <td>QuantumTech Corp</td>
+                        <td>$3.2T</td>
+                        <td class="positive">+28.5%</td>
+                    </tr>
+                    <tr>
+                        <td>#2</td>
+                        <td>NeuralNet Systems</td>
+                        <td>$2.8T</td>
+                        <td class="positive">+31.2%</td>
+                    </tr>
+                    <tr>
+                        <td>#3</td>
+                        <td>CyberDynamics Inc</td>
+                        <td>$2.1T</td>
+                        <td class="positive">+18.7%</td>
+                    </tr>
+                    <tr>
+                        <td>#4</td>
+                        <td>FusionAI Labs</td>
+                        <td>$1.9T</td>
+                        <td class="positive">+42.3%</td>
+                    </tr>
+                    <tr>
+                        <td>#5</td>
+                        <td>DataVerse Global</td>
+                        <td>$1.6T</td>
+                        <td class="positive">+15.8%</td>
+                    </tr>
+                    <tr>
+                        <td>#6</td>
+                        <td>CloudMatrix Ltd</td>
+                        <td>$1.4T</td>
+                        <td class="negative">-3.2%</td>
+                    </tr>
+                    <tr>
+                        <td>#7</td>
+                        <td>BioTech Innovations</td>
+                        <td>$1.2T</td>
+                        <td class="positive">+25.6%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-section">
+            <h2 class="section-title">📊 季度产品销售数据</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>产品</th>
+                        <th>Q1销量</th>
+                        <th>Q2销量</th>
+                        <th>Q3销量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AI芯片 X9000</td>
+                        <td>1.2M</td>
+                        <td>1.8M</td>
+                        <td>2.4M</td>
+                    </tr>
+                    <tr>
+                        <td>量子计算机 Q-Pro</td>
+                        <td>850K</td>
+                        <td>920K</td>
+                        <td>1.1M</td>
+                    </tr>
+                    <tr>
+                        <td>神经接口设备 NeuroLink</td>
+                        <td>3.5M</td>
+                        <td>4.2M</td>
+                        <td>5.8M</td>
+                    </tr>
+                    <tr>
+                        <td>全息投影仪 HoloPro</td>
+                        <td>680K</td>
+                        <td>750K</td>
+                        <td>890K</td>
+                    </tr>
+                    <tr>
+                        <td>智能机器人 RoboAssist</td>
+                        <td>2.1M</td>
+                        <td>2.6M</td>
+                        <td>3.3M</td>
+                    </tr>
+                    <tr>
+                        <td>云存储服务 CloudMax</td>
+                        <td>15.2M</td>
+                        <td>18.7M</td>
+                        <td>22.4M</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-section">
+            <h2 class="section-title">🎯 重点项目进度跟踪</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>负责人</th>
+                        <th>预算</th>
+                        <th>进度</th>
+                        <th>状态</th>
+                        <th>截止日期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>量子加密系统</td>
+                        <td>张伟博士</td>
+                        <td>$245M</td>
+                        <td>85%</td>
+                        <td><span class="status-badge status-inprogress">进行中</span></td>
+                        <td>2025-12-15</td>
+                    </tr>
+                    <tr>
+                        <td>AI医疗诊断平台</td>
+                        <td>李娜教授</td>
+                        <td>$180M</td>
+                        <td>92%</td>
+                        <td><span class="status-badge status-nearcompletion">即将完成</span></td>
+                        <td>2025-11-30</td>
+                    </tr>
+                    <tr>
+                        <td>全球卫星网络</td>
+                        <td>王军工程师</td>
+                        <td>$520M</td>
+                        <td>67%</td>
+                        <td><span class="status-badge status-attention">需关注</span></td>
+                        <td>2026-03-20</td>
+                    </tr>
+                    <tr>
+                        <td>虚拟现实生态系统</td>
+                        <td>陈晨总监</td>
+                        <td>$340M</td>
+                        <td>78%</td>
+                        <td><span class="status-badge status-inprogress">进行中</span></td>
+                        <td>2026-01-10</td>
+                    </tr>
+                    <tr>
+                        <td>自动驾驶算法 V5</td>
+                        <td>刘强架构师</td>
+                        <td>$290M</td>
+                        <td>45%</td>
+                        <td><span class="status-badge status-delayed">延期</span></td>
+                        <td>2026-02-28</td>
+                    </tr>
+                    <tr>
+                        <td>区块链金融平台</td>
+                        <td>赵敏经理</td>
+                        <td>$165M</td>
+                        <td>100%</td>
+                        <td><span class="status-badge status-completed">已完成</span></td>
+                        <td>2025-10-01</td>
+                    </tr>
+                    <tr>
+                        <td>纳米材料研发</td>
+                        <td>孙丽研究员</td>
+                        <td>$420M</td>
+                        <td>32%</td>
+                        <td><span class="status-badge status-risk">风险</span></td>
+                        <td>2026-06-15</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-section">
+            <h2 class="section-title">🌐 服务器性能监控</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>服务器</th>
+                        <th>位置</th>
+                        <th>CPU使用率</th>
+                        <th>内存</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>US-EAST-01</td>
+                        <td>纽约</td>
+                        <td>68%</td>
+                        <td>124GB/256GB</td>
+                        <td><span class="status-badge status-normal">正常</span></td>
+                    </tr>
+                    <tr>
+                        <td>EU-WEST-02</td>
+                        <td>伦敦</td>
+                        <td>45%</td>
+                        <td>98GB/256GB</td>
+                        <td><span class="status-badge status-normal">正常</span></td>
+                    </tr>
+                    <tr>
+                        <td>ASIA-EAST-03</td>
+                        <td>东京</td>
+                        <td>82%</td>
+                        <td>210GB/256GB</td>
+                        <td><span class="status-badge status-highload">高负载</span></td>
+                    </tr>
+                    <tr>
+                        <td>AU-SOUTH-04</td>
+                        <td>悉尼</td>
+                        <td>51%</td>
+                        <td>115GB/256GB</td>
+                        <td><span class="status-badge status-normal">正常</span></td>
+                    </tr>
+                    <tr>
+                        <td>CN-NORTH-05</td>
+                        <td>北京</td>
+                        <td>91%</td>
+                        <td>238GB/256GB</td>
+                        <td><span class="status-badge status-warning">警告</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-section">
+            <h2 class="section-title">📱 移动应用数据</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>应用名称</th>
+                        <th>下载量</th>
+                        <th>活跃用户</th>
+                        <th>评分</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TechHub Pro</td>
+                        <td>245M</td>
+                        <td>156M</td>
+                        <td>⭐ 4.8</td>
+                    </tr>
+                    <tr>
+                        <td>CloudSync Plus</td>
+                        <td>189M</td>
+                        <td>124M</td>
+                        <td>⭐ 4.6</td>
+                    </tr>
+                    <tr>
+                        <td>AI Assistant</td>
+                        <td>520M</td>
+                        <td>385M</td>
+                        <td>⭐ 4.9</td>
+                    </tr>
+                    <tr>
+                        <td>SecureVault</td>
+                        <td>98M</td>
+                        <td>67M</td>
+                        <td>⭐ 4.7</td>
+                    </tr>
+                    <tr>
+                        <td>MetaConnect</td>
+                        <td>412M</td>
+                        <td>298M</td>
+                        <td>⭐ 4.5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

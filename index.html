@@ -9,6 +9,34 @@
 </head>
 <body>
     <div class="container">
+        <!-- AI助手状态栏 -->
+        <div class="ai-status-bar">
+            <div class="ai-assistant">
+                <div class="ai-avatar">🤖</div>
+                <div class="ai-info">
+                    <div class="ai-name">AI环境分析助手</div>
+                    <div class="ai-status">
+                        <span class="ai-dot"></span>
+                        正在实时分析全球环境数据
+                    </div>
+                </div>
+            </div>
+            <div class="ai-indicators">
+                <div class="ai-indicator active">
+                    <span class="indicator-icon">🧠</span>
+                    <span>AI学习中</span>
+                </div>
+                <div class="ai-indicator">
+                    <span class="indicator-icon">📊</span>
+                    <span>数据预测</span>
+                </div>
+                <div class="ai-indicator">
+                    <span class="indicator-icon">⚠️</span>
+                    <span>风险预警</span>
+                </div>
+            </div>
+        </div>
+
         <!-- 头部 -->
         <header class="header">
             <div class="subtitle">Global Climate & Environment Monitoring Dashboard</div>
@@ -52,6 +80,43 @@
             </div>
         </div>
 
+        <!-- AI分析建议 -->
+        <div class="ai-insights-section">
+            <h2 class="section-title">🤖 AI环境分析洞察</h2>
+            <div class="ai-insights-grid">
+                <div class="ai-insight-card">
+                    <div class="insight-header">
+                        <span class="insight-icon">🔥</span>
+                        <span class="insight-type">高温风险预警</span>
+                    </div>
+                    <div class="insight-content">
+                        <p>AI预测：未来7天，北半球高温天气将影响超过30%的地区，建议加强空气调节系统使用。</p>
+                        <div class="insight-meta">置信度: 87% • 基于历史数据分析</div>
+                    </div>
+                </div>
+                <div class="ai-insight-card">
+                    <div class="insight-header">
+                        <span class="insight-icon">🌱</span>
+                        <span class="insight-type">碳减排机会</span>
+                    </div>
+                    <div class="insight-content">
+                        <p>AI识别：印度太阳能项目进展良好，可再生能源占比有望在6个月内提升至32%。</p>
+                        <div class="insight-meta">置信度: 92% • 基于项目跟踪数据</div>
+                    </div>
+                </div>
+                <div class="ai-insight-card">
+                    <div class="insight-header">
+                        <span class="insight-icon">⚠️</span>
+                        <span class="insight-type">污染热点监控</span>
+                    </div>
+                    <div class="insight-content">
+                        <p>AI监测：山东省水泥厂排放超标，建议立即进行设备检查和污染物控制。</p>
+                        <div class="insight-meta">置信度: 95% • 实时数据监控</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 图表区域 -->
         <div class="chart-row">
             <div class="chart-section large">
@@ -78,6 +143,82 @@
         <div class="chart-section">
             <h2 class="section-title">🌏 全球主要国家碳排放量对比</h2>
             <div id="carbonEmissionsChart" class="chart-container"></div>
+        </div>
+
+        <!-- AI预测模块 -->
+        <div class="ai-prediction-section">
+            <h2 class="section-title">🔮 AI环境趋势预测 (2025-2030)</h2>
+            <div class="prediction-grid">
+                <div class="prediction-card">
+                    <div class="prediction-header">
+                        <h3>🌡️ 气温变化预测</h3>
+                        <div class="prediction-confidence">
+                            <span class="confidence-bar" style="width: 85%"></span>
+                            <span class="confidence-text">预测准确度: 85%</span>
+                        </div>
+                    </div>
+                    <div class="prediction-content">
+                        <div class="prediction-item">
+                            <span class="prediction-label">2026年全球平均气温</span>
+                            <span class="prediction-value">+1.4°C ↑</span>
+                        </div>
+                        <div class="prediction-item">
+                            <span class="prediction-label">2030年极端天气事件</span>
+                            <span class="prediction-value">+28% ↑</span>
+                        </div>
+                        <div class="prediction-item">
+                            <span class="prediction-label">北极冰川融化速度</span>
+                            <span class="prediction-value">加速15% ↑</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="prediction-card">
+                    <div class="prediction-header">
+                        <h3>💨 空气质量改善预测</h3>
+                        <div class="prediction-confidence">
+                            <span class="confidence-bar" style="width: 78%"></span>
+                            <span class="confidence-text">预测准确度: 78%</span>
+                        </div>
+                    </div>
+                    <div class="prediction-content">
+                        <div class="prediction-item">
+                            <span class="prediction-label">北京PM2.5改善</span>
+                            <span class="prediction-value">↓ 22μg/m³</span>
+                        </div>
+                        <div class="prediction-item">
+                            <span class="prediction-label">新德里空气质量等级</span>
+                            <span class="prediction-value">中等 → 良</span>
+                        </div>
+                        <div class="prediction-item">
+                            <span class="prediction-label">全球蓝天城市数量</span>
+                            <span class="prediction-value">+156个 ↑</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="prediction-card">
+                    <div class="prediction-header">
+                        <h3>♻️ 可再生能源发展</h3>
+                        <div class="prediction-confidence">
+                            <span class="confidence-bar" style="width: 91%"></span>
+                            <span class="confidence-text">预测准确度: 91%</span>
+                        </div>
+                    </div>
+                    <div class="prediction-content">
+                        <div class="prediction-item">
+                            <span class="prediction-label">全球可再生能源占比</span>
+                            <span class="prediction-value">35.2% ↑</span>
+                        </div>
+                        <div class="prediction-item">
+                            <span class="prediction-label">太阳能发电成本</span>
+                            <span class="prediction-value">↓ 40%</span>
+                        </div>
+                        <div class="prediction-item">
+                            <span class="prediction-label">电动汽车市场份额</span>
+                            <span class="prediction-value">28% ↑</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- 表格区域 -->
@@ -465,6 +606,55 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <!-- AI聊天助手 -->
+        <div class="ai-chat-section">
+            <h2 class="section-title">💬 AI环境咨询助手</h2>
+            <div class="chat-container">
+                <div class="chat-messages">
+                    <div class="message ai-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <div class="message-text">您好！我是AI环境分析助手，可以为您解答气候变化相关问题，或提供环境数据分析建议。</div>
+                            <div class="message-time">刚刚</div>
+                        </div>
+                    </div>
+                    <div class="message ai-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <div class="message-text">基于当前数据分析，全球气温上升趋势明显，建议关注可再生能源发展。</div>
+                            <div class="message-time">2分钟前</div>
+                        </div>
+                    </div>
+                    <div class="message user-message">
+                        <div class="message-avatar">👤</div>
+                        <div class="message-content">
+                            <div class="message-text">哪些国家的碳减排措施最有效？</div>
+                            <div class="message-time">1分钟前</div>
+                        </div>
+                    </div>
+                    <div class="message ai-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <div class="message-text">根据AI分析，德国、日本和中国在碳减排方面进展显著。德国的可再生能源占比已达45%，日本的减排目标有望在2030年前实现。</div>
+                            <div class="message-time">刚刚</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <div class="chat-input-container">
+                        <input type="text" class="chat-input" placeholder="询问环境问题，或请求AI分析..." value="分析一下北京的空气质量改善趋势">
+                        <button class="chat-send-btn">发送</button>
+                    </div>
+                    <div class="chat-suggestions">
+                        <span class="suggestion-tag">🌡️ 气温预测</span>
+                        <span class="suggestion-tag">💨 空气质量</span>
+                        <span class="suggestion-tag">♻️ 碳减排</span>
+                        <span class="suggestion-tag">⚠️ 环境风险</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
